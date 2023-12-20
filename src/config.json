@@ -9,6 +9,6 @@
     "testscope",
     "user_details"
   ],
-  "signInRedirectURL": "http://localhost:5173",
-  "signOutRedirectURL": "http://localhost:5173"
+  "signInRedirectURL": "https://093dcf06-e0c7-4b00-8f54-51104c381271.e1-us-east-azure.choreoapps.dev",
+  "signOutRedirectURL": "https://093dcf06-e0c7-4b00-8f54-51104c381271.e1-us-east-azure.choreoapps.dev"
 }
