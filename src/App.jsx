@@ -8,19 +8,13 @@ import NotFound from "./components/NotFound";
 import { useAuthContext } from "@asgardeo/auth-react";
 import { useEffect, useState, useCallback } from "react";
 import Land from "./components/Land";
+import { FlowContextProvider } from "./contexts/FlowContext";
 
 function App() {
+  const { state, signIn, getBasicUserInfo, getIDToken, getDecodedIDToken, on } =
+    useAuthContext();
 
-  const {
-    state,
-    signIn,
-    getBasicUserInfo,
-    getIDToken,
-    getDecodedIDToken,
-    on,
-  } = useAuthContext();
-
-  const {derivedAuthenticationState, setDerivedAuthenticationState, section} =
+  const { derivedAuthenticationState, setDerivedAuthenticationState, section } =
     useViewContext();
   const [hasAuthenticationErrors, setHasAuthenticationErrors] = useState(false);
   const [hasLogoutFailureError, setHasLogoutFailureError] = useState();
@@ -55,6 +49,7 @@ function App() {
     signIn().catch(() => console.log("asd"));
   }, [signIn]);
 
+
   return (
     <>
       {state.isAuthenticated ? (
@@ -62,9 +57,13 @@ function App() {
           <Sidebar />
 
           {section === "Home" ? (
-            <Home />
+            <FlowContextProvider>
+              <Home />
+            </FlowContextProvider>
           ) : section === "Police" ? (
-            <Police />
+            <FlowContextProvider>
+              <Police />
+            </FlowContextProvider>
           ) : section === "Identity" ? (
             <Identity />
           ) : section === "Address" ? (
